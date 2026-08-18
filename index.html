@@ -282,5 +282,21 @@
   © 2026 FF Mod Store — All Rights Reserved.
 </footer>
 
-</body>
+<script>
+  document.querySelector('.buy').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('orderBox').style.display = 'block';
+  });
+
+  function showPayment() {
+    const packageChoice = document.getElementById('orderPackage').value;
+
+    if (!packageChoice) {
+      alert('Please select a package.');
+      return;
+    }
+
+    alert('Selected: ' + packageChoice + '\nPayment method will be shown next.');
+  }
+</script></body>
 </html>
