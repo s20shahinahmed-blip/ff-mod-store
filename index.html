@@ -17,7 +17,7 @@ body{
 
 .container{
   width:92%;
-  max-width:1000px;
+  max-width:1100px;
   margin:auto;
 }
 
@@ -40,7 +40,8 @@ header p{
 
 .login-box,
 .store,
-.order-box{
+.order-box,
+.admin-box{
   background:#1e293b;
   padding:25px;
   margin:25px auto;
@@ -90,6 +91,11 @@ button:hover,.buy:hover{
   width:auto;
   padding:9px 15px;
   margin:15px auto 0;
+}
+
+.admin-btn{
+  background:#7c3aed;
+  margin-top:10px;
 }
 
 .products{
@@ -158,7 +164,8 @@ button:hover,.buy:hover{
   max-width:600px;
 }
 
-.order-box h2{
+.order-box h2,
+.admin-box h2{
   color:#38bdf8;
   margin-bottom:15px;
 }
@@ -197,13 +204,129 @@ button:hover,.buy:hover{
 }
 
 .hidden{
-  display:none;
+  display:none!important;
 }
 
 footer{
   text-align:center;
   padding:30px;
   color:#94a3b8;
+}
+
+.admin-box{
+  display:none;
+  max-width:1100px;
+}
+
+.admin-top{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin:20px 0;
+}
+
+.stat{
+  background:#0f172a;
+  border:1px solid #334155;
+  padding:18px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:28px;
+  color:#38bdf8;
+  margin-top:8px;
+}
+
+.admin-section{
+  background:#0f172a;
+  padding:20px;
+  border-radius:12px;
+  margin-top:20px;
+}
+
+.admin-section h3{
+  margin-bottom:15px;
+  color:#38bdf8;
+}
+
+.order-card{
+  background:#1e293b;
+  border:1px solid #334155;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+
+.order-card p{
+  margin:6px 0;
+  color:#cbd5e1;
+}
+
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+.pending{
+  background:#854d0e;
+}
+
+.approved{
+  background:#166534;
+}
+
+.rejected{
+  background:#991b1b;
+}
+
+.small-btn{
+  width:auto;
+  display:inline-block;
+  padding:9px 12px;
+  margin:5px 5px 0 0;
+  font-size:14px;
+}
+
+.approve{
+  background:#16a34a;
+}
+
+.reject{
+  background:#dc2626;
+}
+
+.delete{
+  background:#7f1d1d;
+}
+
+.package-row{
+  display:grid;
+  grid-template-columns:1fr 120px auto;
+  gap:8px;
+  align-items:center;
+  margin-bottom:8px;
+}
+
+.package-row input{
+  margin:0;
+}
+
+.add-btn{
+  background:#2563eb;
+  margin-top:10px;
+}
+
+@media(max-width:600px){
+  .package-row{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -217,11 +340,14 @@ footer{
   </div>
 </header>
 
+
 <!-- LOGIN -->
 <section id="loginSection" class="login-box">
+
   <h2>Login / Register</h2>
+
   <p style="color:#cbd5e1;margin:10px 0 20px;">
-    Enter your email to continue
+    Enter your Gmail address to continue
   </p>
 
   <div id="loginError" class="error"></div>
@@ -240,15 +366,20 @@ footer{
     Continue with Google
   </button>
 
+  <button class="admin-btn" onclick="openAdminLogin()">
+    Admin Login
+  </button>
+
   <p class="note">
-    Demo login: this version stores your login locally in the browser.
-    Real Google login requires Firebase/backend setup.
+    Enter a Gmail address to access the store.
   </p>
+
 </section>
 
 
 <!-- STORE -->
 <section id="storeSection" class="store hidden">
+
   <h2>Welcome to FF Mod Store</h2>
 
   <p id="userEmail" style="color:#94a3b8;margin-top:8px;"></p>
@@ -257,68 +388,8 @@ footer{
     Logout
   </button>
 
-  <div class="products">
+  <div id="products" class="products"></div>
 
-    <!-- PRODUCT 1 -->
-    <div class="product">
-
-      <div class="product-image">
-        <!-- পরে এখানে তোমার প্রথম panel image বসাবে -->
-        <span>Panel Image 1</span>
-      </div>
-
-      <div class="product-content">
-        <h3>Non Root Bala Mod</h3>
-
-        <p>
-          Non Root Bala Mod Panel
-        </p>
-
-        <div class="price-list">
-          <div><span>1 Hour</span><b>৳50</b></div>
-          <div><span>3 Hour</span><b>৳150</b></div>
-          <div><span>6 Hour</span><b>৳250</b></div>
-          <div><span>12 Hour</span><b>৳490</b></div>
-          <div><span>24 Hour</span><b>৳620</b></div>
-        </div>
-
-        <button onclick="openOrder('Non Root Bala Mod')">
-          Buy Now
-        </button>
-      </div>
-    </div>
-
-
-    <!-- PRODUCT 2 -->
-    <div class="product">
-
-      <div class="product-image">
-        <!-- পরে এখানে তোমার দ্বিতীয় panel image বসাবে -->
-        <span>Panel Image 2</span>
-      </div>
-
-      <div class="product-content">
-        <h3>Non Root Drip Client</h3>
-
-        <p>
-          Non Root Drip Client Panel
-        </p>
-
-        <div class="price-list">
-          <div><span>1 Day</span><b>৳120</b></div>
-          <div><span>3 Day</span><b>৳250</b></div>
-          <div><span>7 Day</span><b>৳620</b></div>
-          <div><span>15 Day</span><b>৳1050</b></div>
-          <div><span>30 Day</span><b>৳1550</b></div>
-        </div>
-
-        <button onclick="openOrder('Non Root Drip Client')">
-          Buy Now
-        </button>
-      </div>
-    </div>
-
-  </div>
 </section>
 
 
@@ -354,9 +425,7 @@ footer{
 
     <div id="bkashBox" class="hidden">
 
-      <p>
-        Send Money to:
-      </p>
+      <p>Send Money to:</p>
 
       <p class="bkash">
         01893825135
@@ -370,7 +439,6 @@ footer{
     </div>
 
   </div>
-
 
   <label>Transaction ID</label>
 
@@ -391,15 +459,103 @@ footer{
     Cancel
   </button>
 
-
   <div id="successBox" class="success">
     <h3>Order Submitted!</h3>
     <p style="margin-top:8px;">
       Your order is pending verification.
     </p>
-    <p style="margin-top:8px;">
-      Please wait for admin approval.
-    </p>
+  </div>
+
+</section>
+
+
+<!-- ADMIN LOGIN -->
+<section id="adminLoginSection" class="login-box hidden">
+
+  <h2>Admin Login</h2>
+
+  <div id="adminError" class="error"></div>
+
+  <input
+    type="password"
+    id="adminPassword"
+    placeholder="Admin Password"
+  >
+
+  <button onclick="adminLogin()">
+    Login as Admin
+  </button>
+
+  <button
+    style="background:#475569;margin-top:10px"
+    onclick="closeAdminLogin()"
+  >
+    Back
+  </button>
+
+</section>
+
+
+<!-- ADMIN PANEL -->
+<section id="adminSection" class="admin-box">
+
+  <h2>Admin Dashboard</h2>
+
+  <p style="color:#94a3b8;">
+    FF Mod Store Control Panel
+  </p>
+
+  <button
+    class="logout"
+    onclick="adminLogout()"
+  >
+    Admin Logout
+  </button>
+
+
+  <!-- STATS -->
+  <div class="admin-top">
+
+    <div class="stat">
+      Total Orders
+      <strong id="totalOrders">0</strong>
+    </div>
+
+    <div class="stat">
+      Pending
+      <strong id="pendingOrders">0</strong>
+    </div>
+
+    <div class="stat">
+      Approved
+      <strong id="approvedOrders">0</strong>
+    </div>
+
+    <div class="stat">
+      Rejected
+      <strong id="rejectedOrders">0</strong>
+    </div>
+
+  </div>
+
+
+  <!-- ORDERS -->
+  <div class="admin-section">
+
+    <h3>Customer Orders</h3>
+
+    <div id="ordersList"></div>
+
+  </div>
+
+
+  <!-- PRICE MANAGEMENT -->
+  <div class="admin-section">
+
+    <h3>Price Management</h3>
+
+    <div id="priceManagement"></div>
+
   </div>
 
 </section>
@@ -414,13 +570,18 @@ footer{
 
 <script>
 
-let currentProduct = "";
-let currentPrice = 0;
+/* =========================
+   ADMIN SETTINGS
+========================= */
+
+const ADMIN_PASSWORD = "FFAdmin@2026";
 
 
-/* PACKAGE DATA */
+/* =========================
+   DEFAULT PRODUCTS
+========================= */
 
-const products = {
+const defaultProducts = {
 
   "Non Root Bala Mod": [
     ["1 Hour",50],
@@ -441,12 +602,35 @@ const products = {
 };
 
 
-/* LOGIN */
+let products =
+  JSON.parse(
+    localStorage.getItem("ffProducts")
+  );
+
+if(!products){
+  products = defaultProducts;
+
+  localStorage.setItem(
+    "ffProducts",
+    JSON.stringify(products)
+  );
+}
+
+
+let currentProduct = "";
+let currentPrice = 0;
+
+
+/* =========================
+   LOGIN
+========================= */
 
 function login(){
 
   const email =
-    document.getElementById("email").value.trim();
+    document.getElementById("email")
+    .value
+    .trim();
 
   const error =
     document.getElementById("loginError");
@@ -478,19 +662,23 @@ function login(){
 }
 
 
-/* GOOGLE BUTTON */
+/* =========================
+   GOOGLE MESSAGE
+========================= */
 
 function googleMessage(){
 
   alert(
     "Real Google Login requires Firebase Authentication. " +
-    "This demo uses Gmail address login."
+    "This version uses Gmail address login."
   );
 
 }
 
 
-/* SHOW STORE */
+/* =========================
+   SHOW STORE
+========================= */
 
 function showStore(){
 
@@ -499,23 +687,26 @@ function showStore(){
 
   if(!email) return;
 
-  document.getElementById(
-    "loginSection"
-  ).classList.add("hidden");
+  document
+    .getElementById("loginSection")
+    .classList.add("hidden");
 
-  document.getElementById(
-    "storeSection"
-  ).classList.remove("hidden");
+  document
+    .getElementById("storeSection")
+    .classList.remove("hidden");
 
-  document.getElementById(
-    "userEmail"
-  ).innerText =
-    "Logged in as: " + email;
+  document
+    .getElementById("userEmail")
+    .innerText =
+      "Logged in as: " + email;
 
+  renderProducts();
 }
 
 
-/* LOGOUT */
+/* =========================
+   LOGOUT
+========================= */
 
 function logout(){
 
@@ -526,18 +717,85 @@ function logout(){
 }
 
 
-/* OPEN ORDER */
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts(){
+
+  const container =
+    document.getElementById("products");
+
+  container.innerHTML = "";
+
+  Object.keys(products).forEach(
+    function(productName){
+
+      let priceHTML = "";
+
+      products[productName].forEach(
+        function(item){
+
+          priceHTML += `
+            <div>
+              <span>${escapeHTML(item[0])}</span>
+              <b>৳${Number(item[1])}</b>
+            </div>
+          `;
+
+        }
+      );
+
+
+      container.innerHTML += `
+
+        <div class="product">
+
+          <div class="product-image">
+            <span>Panel Image</span>
+          </div>
+
+          <div class="product-content">
+
+            <h3>
+              ${escapeHTML(productName)}
+            </h3>
+
+            <p>
+              Premium digital panel
+            </p>
+
+            <div class="price-list">
+              ${priceHTML}
+            </div>
+
+            <button
+              onclick="openOrder('${escapeAttribute(productName)}')"
+            >
+              Buy Now
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* =========================
+   OPEN ORDER
+========================= */
 
 function openOrder(productName){
 
-  const user =
-    localStorage.getItem("ffUser");
+  if(!localStorage.getItem("ffUser")){
 
-  if(!user){
-
-    alert(
-      "Please Login / Register first."
-    );
+    alert("Please login first.");
 
     return;
   }
@@ -575,6 +833,12 @@ function openOrder(productName){
     }
   );
 
+  currentPrice = 0;
+
+  document.getElementById(
+    "selectedPrice"
+  ).innerText = "৳0";
+
   document.getElementById(
     "orderSection"
   ).style.display = "block";
@@ -594,7 +858,9 @@ function openOrder(productName){
 }
 
 
-/* PRICE */
+/* =========================
+   PRICE
+========================= */
 
 function updatePrice(){
 
@@ -625,7 +891,9 @@ function updatePrice(){
 }
 
 
-/* PAYMENT METHOD */
+/* =========================
+   PAYMENT
+========================= */
 
 document
 .getElementById("paymentMethod")
@@ -652,7 +920,9 @@ document
 );
 
 
-/* SUBMIT ORDER */
+/* =========================
+   SUBMIT ORDER
+========================= */
 
 function submitOrder(){
 
@@ -669,7 +939,8 @@ function submitOrder(){
   const transactionId =
     document.getElementById(
       "transactionId"
-    ).value.trim();
+    ).value
+    .trim();
 
   if(!packageSelect.value){
 
@@ -705,6 +976,9 @@ function submitOrder(){
 
 
   const order = {
+
+    id:
+      Date.now(),
 
     email:
       localStorage.getItem("ffUser"),
@@ -752,15 +1026,16 @@ function submitOrder(){
     "successBox"
   ).style.display = "block";
 
-  alert(
-    "Order submitted successfully. " +
-    "Your transaction is pending verification."
-  );
+  document.getElementById(
+    "transactionId"
+  ).value = "";
 
 }
 
 
-/* CLOSE ORDER */
+/* =========================
+   CLOSE ORDER
+========================= */
 
 function closeOrder(){
 
@@ -771,9 +1046,657 @@ function closeOrder(){
 }
 
 
-/* AUTO LOGIN */
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+function openAdminLogin(){
+
+  document
+    .getElementById("loginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.remove("hidden");
+
+}
+
+
+function closeAdminLogin(){
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginSection")
+    .classList.remove("hidden");
+
+}
+
+
+function adminLogin(){
+
+  const password =
+    document.getElementById(
+      "adminPassword"
+    ).value;
+
+  const error =
+    document.getElementById(
+      "adminError"
+    );
+
+  if(password !== ADMIN_PASSWORD){
+
+    error.innerText =
+      "Wrong admin password.";
+
+    return;
+  }
+
+  localStorage.setItem(
+    "ffAdmin",
+    "true"
+  );
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminSection")
+    .style.display = "block";
+
+  renderAdmin();
+
+}
+
+
+function adminLogout(){
+
+  localStorage.removeItem(
+    "ffAdmin"
+  );
+
+  location.reload();
+
+}
+
+
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+function renderAdmin(){
+
+  renderStats();
+  renderOrders();
+  renderPriceManagement();
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function renderStats(){
+
+  const orders =
+    JSON.parse(
+      localStorage.getItem(
+        "ffOrders"
+      ) || "[]"
+    );
+
+  const pending =
+    orders.filter(
+      o => o.status === "Pending"
+    ).length;
+
+  const approved =
+    orders.filter(
+      o => o.status === "Approved"
+    ).length;
+
+  const rejected =
+    orders.filter(
+      o => o.status === "Rejected"
+    ).length;
+
+
+  document.getElementById(
+    "totalOrders"
+  ).innerText = orders.length;
+
+  document.getElementById(
+    "pendingOrders"
+  ).innerText = pending;
+
+  document.getElementById(
+    "approvedOrders"
+  ).innerText = approved;
+
+  document.getElementById(
+    "rejectedOrders"
+  ).innerText = rejected;
+
+}
+
+
+/* =========================
+   RENDER ORDERS
+========================= */
+
+function renderOrders(){
+
+  const container =
+    document.getElementById(
+      "ordersList"
+    );
+
+  const orders =
+    JSON.parse(
+      localStorage.getItem(
+        "ffOrders"
+      ) || "[]"
+    );
+
+  if(!orders.length){
+
+    container.innerHTML =
+      "<p>No orders yet.</p>";
+
+    return;
+  }
+
+
+  container.innerHTML = "";
+
+
+  orders
+    .slice()
+    .reverse()
+    .forEach(
+      function(order){
+
+        const statusClass =
+          order.status.toLowerCase();
+
+
+        container.innerHTML += `
+
+          <div class="order-card">
+
+            <p>
+              <strong>Order ID:</strong>
+              ${order.id}
+            </p>
+
+            <p>
+              <strong>Gmail:</strong>
+              ${escapeHTML(order.email)}
+            </p>
+
+            <p>
+              <strong>Product:</strong>
+              ${escapeHTML(order.product)}
+            </p>
+
+            <p>
+              <strong>Package:</strong>
+              ${escapeHTML(order.package)}
+            </p>
+
+            <p>
+              <strong>Amount:</strong>
+              ৳${Number(order.price)}
+            </p>
+
+            <p>
+              <strong>Payment:</strong>
+              ${escapeHTML(order.payment)}
+            </p>
+
+            <p>
+              <strong>Transaction ID:</strong>
+              <b>${escapeHTML(order.transactionId)}</b>
+            </p>
+
+            <p>
+              <strong>Date:</strong>
+              ${escapeHTML(order.date)}
+            </p>
+
+            <span class="status ${statusClass}">
+              ${order.status}
+            </span>
+
+            <br>
+
+            ${
+              order.status === "Pending"
+              ?
+              `
+              <button
+                class="small-btn approve"
+                onclick="updateOrder(${order.id},'Approved')"
+              >
+                Approve
+              </button>
+
+              <button
+                class="small-btn reject"
+                onclick="updateOrder(${order.id},'Rejected')"
+              >
+                Reject
+              </button>
+              `
+              :
+              ""
+            }
+
+            <button
+              class="small-btn delete"
+              onclick="deleteOrder(${order.id})"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+}
+
+
+/* =========================
+   UPDATE ORDER
+========================= */
+
+function updateOrder(id,status){
+
+  let orders =
+    JSON.parse(
+      localStorage.getItem(
+        "ffOrders"
+      ) || "[]"
+    );
+
+
+  orders =
+    orders.map(
+      function(order){
+
+        if(order.id === id){
+
+          order.status = status;
+
+        }
+
+        return order;
+
+      }
+    );
+
+
+  localStorage.setItem(
+    "ffOrders",
+    JSON.stringify(orders)
+  );
+
+
+  renderAdmin();
+
+}
+
+
+/* =========================
+   DELETE ORDER
+========================= */
+
+function deleteOrder(id){
+
+  if(!confirm(
+    "Delete this order?"
+  )) return;
+
+
+  let orders =
+    JSON.parse(
+      localStorage.getItem(
+        "ffOrders"
+      ) || "[]"
+    );
+
+
+  orders =
+    orders.filter(
+      order => order.id !== id
+    );
+
+
+  localStorage.setItem(
+    "ffOrders",
+    JSON.stringify(orders)
+  );
+
+
+  renderAdmin();
+
+}
+
+
+/* =========================
+   PRICE MANAGEMENT
+========================= */
+
+function renderPriceManagement(){
+
+  const container =
+    document.getElementById(
+      "priceManagement"
+    );
+
+  container.innerHTML = "";
+
+
+  Object.keys(products)
+    .forEach(
+      function(productName){
+
+        let html = `
+
+          <div style="
+            background:#1e293b;
+            padding:15px;
+            border-radius:10px;
+            margin-bottom:20px;
+          ">
+
+            <h4 style="
+              color:#38bdf8;
+              margin-bottom:12px;
+            ">
+              ${escapeHTML(productName)}
+            </h4>
+
+            <div id="packages-${slug(productName)}">
+        `;
+
+
+        products[productName]
+          .forEach(
+            function(item,index){
+
+              html += `
+
+                <div class="package-row">
+
+                  <input
+                    type="text"
+                    id="name-${slug(productName)}-${index}"
+                    value="${escapeAttribute(item[0])}"
+                  >
+
+                  <input
+                    type="number"
+                    id="price-${slug(productName)}-${index}"
+                    value="${Number(item[1])}"
+                    min="0"
+                  >
+
+                  <button
+                    class="small-btn delete"
+                    onclick="deletePackage('${escapeAttribute(productName)}',${index})"
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
+              `;
+
+            }
+          );
+
+
+        html += `
+
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addPackage('${escapeAttribute(productName)}')"
+            >
+              + Add Package
+            </button>
+
+            <button
+              style="margin-top:10px;background:#16a34a"
+              onclick="saveProductPrices('${escapeAttribute(productName)}')"
+            >
+              Save Prices
+            </button>
+
+          </div>
+
+        `;
+
+
+        container.innerHTML += html;
+
+      }
+    );
+
+
+}
+
+
+/* =========================
+   SAVE PRICES
+========================= */
+
+function saveProductPrices(productName){
+
+  const list =
+    products[productName];
+
+  const newList = [];
+
+
+  list.forEach(
+    function(item,index){
+
+      const name =
+        document.getElementById(
+          `name-${slug(productName)}-${index}`
+        ).value.trim();
+
+      const price =
+        Number(
+          document.getElementById(
+            `price-${slug(productName)}-${index}`
+          ).value
+        );
+
+
+      if(name && price >= 0){
+
+        newList.push([
+          name,
+          price
+        ]);
+
+      }
+
+    }
+  );
+
+
+  products[productName] =
+    newList;
+
+
+  localStorage.setItem(
+    "ffProducts",
+    JSON.stringify(products)
+  );
+
+
+  renderProducts();
+  renderPriceManagement();
+
+
+  alert(
+    "Prices saved successfully."
+  );
+
+}
+
+
+/* =========================
+   ADD PACKAGE
+========================= */
+
+function addPackage(productName){
+
+  const name =
+    prompt(
+      "Package name:"
+    );
+
+  if(!name) return;
+
+
+  const price =
+    Number(
+      prompt(
+        "Package price:"
+      )
+    );
+
+
+  if(
+    !Number.isFinite(price) ||
+    price < 0
+  ){
+
+    alert(
+      "Please enter a valid price."
+    );
+
+    return;
+  }
+
+
+  products[productName].push([
+    name,
+    price
+  ]);
+
+
+  localStorage.setItem(
+    "ffProducts",
+    JSON.stringify(products)
+  );
+
+
+  renderProducts();
+  renderPriceManagement();
+
+}
+
+
+/* =========================
+   DELETE PACKAGE
+========================= */
+
+function deletePackage(productName,index){
+
+  if(!confirm(
+    "Delete this package?"
+  )) return;
+
+
+  products[productName]
+    .splice(index,1);
+
+
+  localStorage.setItem(
+    "ffProducts",
+    JSON.stringify(products)
+  );
+
+
+  renderProducts();
+  renderPriceManagement();
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function slug(text){
+
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g,"-");
+
+}
+
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(text){
+
+  return String(text)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+}
+
+
+/* =========================
+   AUTO START
+========================= */
 
 window.onload = function(){
+
+  if(
+    localStorage.getItem("ffAdmin")
+    === "true"
+  ){
+
+    document
+      .getElementById("loginSection")
+      .classList.add("hidden");
+
+    document
+      .getElementById("adminSection")
+      .style.display = "block";
+
+    renderAdmin();
+
+    return;
+  }
+
 
   if(
     localStorage.getItem("ffUser")
