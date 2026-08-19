@@ -357,10 +357,22 @@ footer{
     id="email"
     placeholder="Enter Gmail address"
   >
-
+<input
+    type="password"
+    id="password"
+    placeholder="Enter password"
+    autocomplete="current-password"
+>
   <button onclick="login()">
     Login / Register
   </button>
+  
+  <button
+  style="margin-top:10px;background:#2563eb"
+  onclick="registerUser()"
+>
+  Create Account
+</button>
 
   <button class="google" style="margin-top:10px" onclick="googleMessage()">
     Continue with Google
