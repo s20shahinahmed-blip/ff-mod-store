@@ -49,9 +49,7 @@ header p{
   box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
-.login-box{
-  max-width:450px;
-}
+.login-box{max-width:450px}
 
 input,select{
   width:100%;
@@ -63,7 +61,7 @@ input,select{
   color:white;
 }
 
-button,.buy{
+button{
   display:block;
   width:100%;
   padding:13px;
@@ -74,17 +72,11 @@ button,.buy{
   font-size:16px;
   font-weight:bold;
   cursor:pointer;
-  text-align:center;
-  text-decoration:none;
 }
 
-button:hover,.buy:hover{
-  opacity:.9;
-}
+button:hover{opacity:.9}
 
-.google{
-  background:#4285f4;
-}
+.google{background:#4285f4}
 
 .logout{
   background:#ef4444;
@@ -121,15 +113,7 @@ button:hover,.buy:hover{
   color:#94a3b8;
 }
 
-.product-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.product-content{
-  padding:18px;
-}
+.product-content{padding:18px}
 
 .product-content h3{
   color:#38bdf8;
@@ -155,9 +139,7 @@ button:hover,.buy:hover{
   border-bottom:1px solid #334155;
 }
 
-.price-list div:last-child{
-  border-bottom:0;
-}
+.price-list div:last-child{border-bottom:0}
 
 .order-box{
   display:none;
@@ -201,6 +183,11 @@ button:hover,.buy:hover{
 .error{
   color:#f87171;
   margin-bottom:10px;
+}
+
+.message{
+  color:#38bdf8;
+  margin:10px 0;
 }
 
 .hidden{
@@ -274,17 +261,9 @@ footer{
   margin:8px 0;
 }
 
-.pending{
-  background:#854d0e;
-}
-
-.approved{
-  background:#166534;
-}
-
-.rejected{
-  background:#991b1b;
-}
+.pending{background:#854d0e}
+.approved{background:#166534}
+.rejected{background:#991b1b}
 
 .small-btn{
   width:auto;
@@ -294,17 +273,9 @@ footer{
   font-size:14px;
 }
 
-.approve{
-  background:#16a34a;
-}
-
-.reject{
-  background:#dc2626;
-}
-
-.delete{
-  background:#7f1d1d;
-}
+.approve{background:#16a34a}
+.reject{background:#dc2626}
+.delete{background:#7f1d1d}
 
 .package-row{
   display:grid;
@@ -314,9 +285,7 @@ footer{
   margin-bottom:8px;
 }
 
-.package-row input{
-  margin:0;
-}
+.package-row input{margin:0}
 
 .add-btn{
   background:#2563eb;
@@ -347,43 +316,45 @@ footer{
   <h2>Login / Register</h2>
 
   <p style="color:#cbd5e1;margin:10px 0 20px;">
-    Enter your Gmail address to continue
+    Create an account or login to continue
   </p>
 
   <div id="loginError" class="error"></div>
+  <div id="loginMessage" class="message"></div>
 
   <input
     type="email"
     id="email"
     placeholder="Enter Gmail address"
   >
-<input
+
+  <input
     type="password"
     id="password"
     placeholder="Enter password"
     autocomplete="current-password"
->
+  >
+
   <button onclick="login()">
-    Login / Register
+    Login
   </button>
-  
+
   <button
-  style="margin-top:10px;background:#2563eb"
-  onclick="registerUser()"
->
-  Create Account
-</button>
-
-  <button class="google" style="margin-top:10px" onclick="googleMessage()">
-    Continue with Google
+    style="margin-top:10px;background:#2563eb"
+    onclick="registerUser()"
+  >
+    Create Account
   </button>
 
-  <button class="admin-btn" onclick="openAdminLogin()">
+  <button
+    class="admin-btn"
+    onclick="openAdminLogin()"
+  >
     Admin Login
   </button>
 
   <p class="note">
-    Enter a Gmail address to access the store.
+    Use your Gmail address and password.
   </p>
 
 </section>
@@ -394,9 +365,15 @@ footer{
 
   <h2>Welcome to FF Mod Store</h2>
 
-  <p id="userEmail" style="color:#94a3b8;margin-top:8px;"></p>
+  <p
+    id="userEmail"
+    style="color:#94a3b8;margin-top:8px;"
+  ></p>
 
-  <button class="logout" onclick="logout()">
+  <button
+    class="logout"
+    onclick="logout()"
+  >
     Logout
   </button>
 
@@ -417,7 +394,10 @@ footer{
 
   <label>Select Package</label>
 
-  <select id="packageSelect" onchange="updatePrice()">
+  <select
+    id="packageSelect"
+    onchange="updatePrice()"
+  >
     <option value="">Choose Package</option>
   </select>
 
@@ -431,8 +411,13 @@ footer{
     <h3>Payment Method</h3>
 
     <select id="paymentMethod">
-      <option value="">Select Payment Method</option>
-      <option value="bKash">bKash</option>
+      <option value="">
+        Select Payment Method
+      </option>
+
+      <option value="bKash">
+        bKash
+      </option>
     </select>
 
     <div id="bkashBox" class="hidden">
@@ -472,17 +457,23 @@ footer{
   </button>
 
   <div id="successBox" class="success">
+
     <h3>Order Submitted!</h3>
+
     <p style="margin-top:8px;">
       Your order is pending verification.
     </p>
+
   </div>
 
 </section>
 
 
 <!-- ADMIN LOGIN -->
-<section id="adminLoginSection" class="login-box hidden">
+<section
+  id="adminLoginSection"
+  class="login-box hidden"
+>
 
   <h2>Admin Login</h2>
 
@@ -511,7 +502,10 @@ footer{
     Back
   </button>
 
-</section>- A ADMIN PANEL -->
+</section>
+
+
+<!-- ADMIN PANEL -->
 <section id="adminSection" class="admin-box">
 
   <h2>Admin Dashboard</h2>
@@ -526,7 +520,6 @@ footer{
   >
     Admin Logout
   </button>
-
 
   <!-- STATS -->
   <div class="admin-top">
@@ -559,7 +552,9 @@ footer{
 
     <h3>Customer Orders</h3>
 
-    <div id="ordersList"></div>
+    <div id="ordersList">
+      <p>Loading orders...</p>
+    </div>
 
   </div>
 
@@ -583,13 +578,40 @@ footer{
 </footer>
 
 
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
 <script>
 
 /* =========================
-   ADMIN SETTINGS
+   FIREBASE CONFIG
 ========================= */
 
-const ADMIN_PASSWORD = "FFAdmin@2026";
+const firebaseConfig = {
+  apiKey: "AIzaSyBNe6p1Md-rsEa2R3V18su2cBDhlJeG9x0",
+  authDomain: "ff-mod-store-69b3a.firebaseapp.com",
+  projectId: "ff-mod-store-69b3a",
+  storageBucket: "ff-mod-store-69b3a.firebasestorage.app",
+  messagingSenderId: "497258367228",
+  appId: "1:497258367228:web:33a8c9b1358d01af962f79",
+  measurementId: "G-C1EJ52CST5"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
+/* =========================
+   ADMIN EMAIL
+========================= */
+
+const ADMIN_EMAIL =
+  "s20shahinahmed@gmail.com";
 
 
 /* =========================
@@ -617,12 +639,17 @@ const defaultProducts = {
 };
 
 
+/* =========================
+   VARIABLES
+========================= */
+
 let products =
   JSON.parse(
-    localStorage.getItem("ffProducts")
+    localStorage.getItem("ffProducts") || "null"
   );
 
 if(!products){
+
   products = defaultProducts;
 
   localStorage.setItem(
@@ -631,31 +658,38 @@ if(!products){
   );
 }
 
-
 let currentProduct = "";
 let currentPrice = 0;
 
 
 /* =========================
-   LOGIN
+   REGISTER
 ========================= */
 
-function login(){
+async function registerUser(){
 
   const email =
     document.getElementById("email")
     .value
     .trim();
 
+  const password =
+    document.getElementById("password")
+    .value;
+
   const error =
     document.getElementById("loginError");
 
-  error.innerText = "";
+  const message =
+    document.getElementById("loginMessage");
 
-  if(!email){
+  error.innerText = "";
+  message.innerText = "";
+
+  if(!email || !password){
 
     error.innerText =
-      "Please enter your Gmail address.";
+      "Enter Gmail and password.";
 
     return;
   }
@@ -668,25 +702,188 @@ function login(){
     return;
   }
 
-  localStorage.setItem(
-    "ffUser",
-    email
-  );
+  if(password.length < 6){
 
-  showStore();
+    error.innerText =
+      "Password must be at least 6 characters.";
+
+    return;
+  }
+
+  try{
+
+    await auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+
+    message.innerText =
+      "Account created successfully.";
+
+  }catch(errorObject){
+
+    error.innerText =
+      firebaseError(errorObject);
+
+  }
+
 }
 
 
 /* =========================
-   GOOGLE MESSAGE
+   LOGIN
 ========================= */
 
-function googleMessage(){
+async function login(){
 
-  alert(
-    "Real Google Login requires Firebase Authentication. " +
-    "This version uses Gmail address login."
-  );
+  const email =
+    document.getElementById("email")
+    .value
+    .trim();
+
+  const password =
+    document.getElementById("password")
+    .value;
+
+  const error =
+    document.getElementById("loginError");
+
+  error.innerText = "";
+
+  if(!email || !password){
+
+    error.innerText =
+      "Enter Gmail and password.";
+
+    return;
+  }
+
+  try{
+
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+  }catch(errorObject){
+
+    error.innerText =
+      firebaseError(errorObject);
+
+  }
+
+}
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+async function adminLogin(){
+
+  const email =
+    document.getElementById("adminEmail")
+    .value
+    .trim();
+
+  const password =
+    document.getElementById("adminPassword")
+    .value;
+
+  const error =
+    document.getElementById("adminError");
+
+  error.innerText = "";
+
+  if(!email || !password){
+
+    error.innerText =
+      "Enter admin Gmail and password.";
+
+    return;
+  }
+
+  if(
+    email.toLowerCase() !==
+    ADMIN_EMAIL.toLowerCase()
+  ){
+
+    error.innerText =
+      "This Gmail is not the admin account.";
+
+    return;
+  }
+
+  try{
+
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+  }catch(errorObject){
+
+    error.innerText =
+      firebaseError(errorObject);
+
+  }
+
+}
+
+
+/* =========================
+   FIREBASE AUTH STATE
+========================= */
+
+auth.onAuthStateChanged(
+  async function(user){
+
+    if(!user){
+
+      showLogin();
+
+      return;
+    }
+
+    if(
+      user.email &&
+      user.email.toLowerCase() ===
+      ADMIN_EMAIL.toLowerCase()
+    ){
+
+      showAdmin();
+
+    }else{
+
+      showStore();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   SHOW LOGIN
+========================= */
+
+function showLogin(){
+
+  document
+    .getElementById("loginSection")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("storeSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminSection")
+    .style.display = "none";
 
 }
 
@@ -697,14 +894,21 @@ function googleMessage(){
 
 function showStore(){
 
-  const email =
-    localStorage.getItem("ffUser");
+  const user = auth.currentUser;
 
-  if(!email) return;
+  if(!user) return;
 
   document
     .getElementById("loginSection")
     .classList.add("hidden");
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminSection")
+    .style.display = "none";
 
   document
     .getElementById("storeSection")
@@ -713,9 +917,37 @@ function showStore(){
   document
     .getElementById("userEmail")
     .innerText =
-      "Logged in as: " + email;
+      "Logged in as: " + user.email;
 
   renderProducts();
+
+}
+
+
+/* =========================
+   SHOW ADMIN
+========================= */
+
+function showAdmin(){
+
+  document
+    .getElementById("loginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("storeSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminSection")
+    .style.display = "block";
+
+  renderAdmin();
+
 }
 
 
@@ -723,9 +955,9 @@ function showStore(){
    LOGOUT
 ========================= */
 
-function logout(){
+async function logout(){
 
-  localStorage.removeItem("ffUser");
+  await auth.signOut();
 
   location.reload();
 
@@ -733,7 +965,54 @@ function logout(){
 
 
 /* =========================
-   RENDER PRODUCTS
+   ADMIN LOGOUT
+========================= */
+
+async function adminLogout(){
+
+  await auth.signOut();
+
+  location.reload();
+
+}
+
+
+/* =========================
+   ADMIN LOGIN OPEN
+========================= */
+
+function openAdminLogin(){
+
+  document
+    .getElementById("loginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.remove("hidden");
+
+}
+
+
+/* =========================
+   ADMIN LOGIN CLOSE
+========================= */
+
+function closeAdminLogin(){
+
+  document
+    .getElementById("adminLoginSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginSection")
+    .classList.remove("hidden");
+
+}
+
+
+/* =========================
+   PRODUCTS
 ========================= */
 
 function renderProducts(){
@@ -761,40 +1040,51 @@ function renderProducts(){
         }
       );
 
+      const card =
+        document.createElement("div");
 
-      container.innerHTML += `
+      card.className = "product";
 
-        <div class="product">
+      card.innerHTML = `
 
-          <div class="product-image">
-            <span>Panel Image</span>
+        <div class="product-image">
+          <span>Panel Image</span>
+        </div>
+
+        <div class="product-content">
+
+          <h3>
+            ${escapeHTML(productName)}
+          </h3>
+
+          <p>
+            Premium digital panel
+          </p>
+
+          <div class="price-list">
+            ${priceHTML}
           </div>
 
-          <div class="product-content">
-
-            <h3>
-              ${escapeHTML(productName)}
-            </h3>
-
-            <p>
-              Premium digital panel
-            </p>
-
-            <div class="price-list">
-              ${priceHTML}
-            </div>
-
-            <button
-              onclick="openOrder('${escapeAttribute(productName)}')"
-            >
-              Buy Now
-            </button>
-
-          </div>
+          <button class="buy-button">
+            Buy Now
+          </button>
 
         </div>
 
       `;
+
+      card
+        .querySelector(".buy-button")
+        .addEventListener(
+          "click",
+          function(){
+
+            openOrder(productName);
+
+          }
+        );
+
+      container.appendChild(card);
 
     }
   );
@@ -808,7 +1098,9 @@ function renderProducts(){
 
 function openOrder(productName){
 
-  if(!localStorage.getItem("ffUser")){
+  const user = auth.currentUser;
+
+  if(!user){
 
     alert("Please login first.");
 
@@ -911,35 +1203,44 @@ function updatePrice(){
 ========================= */
 
 document
-.getElementById("paymentMethod")
-.addEventListener(
-  "change",
-  function(){
+  .getElementById("paymentMethod")
+  .addEventListener(
+    "change",
+    function(){
 
-    const box =
-      document.getElementById(
-        "bkashBox"
-      );
+      const box =
+        document.getElementById(
+          "bkashBox"
+        );
 
-    if(this.value === "bKash"){
+      if(this.value === "bKash"){
 
-      box.classList.remove("hidden");
+        box.classList.remove("hidden");
 
-    }else{
+      }else{
 
-      box.classList.add("hidden");
+        box.classList.add("hidden");
+
+      }
 
     }
-
-  }
-);
+  );
 
 
 /* =========================
    SUBMIT ORDER
 ========================= */
 
-function submitOrder(){
+async function submitOrder(){
+
+  const user = auth.currentUser;
+
+  if(!user){
+
+    alert("Please login first.");
+
+    return;
+  }
 
   const packageSelect =
     document.getElementById(
@@ -980,7 +1281,6 @@ function submitOrder(){
     return;
   }
 
-
   const selectedOption =
     packageSelect.options[
       packageSelect.selectedIndex
@@ -989,61 +1289,49 @@ function submitOrder(){
   const packageName =
     selectedOption.dataset.name;
 
+  try{
 
-  const order = {
+    await db
+      .collection("orders")
+      .add({
 
-    id:
-      Date.now(),
+        uid:user.uid,
 
-    email:
-      localStorage.getItem("ffUser"),
+        email:user.email,
 
-    product:
-      currentProduct,
+        product:currentProduct,
 
-    package:
-      packageName,
+        package:packageName,
 
-    price:
-      currentPrice,
+        price:currentPrice,
 
-    payment:
-      paymentMethod,
+        payment:paymentMethod,
 
-    transactionId:
-      transactionId,
+        transactionId:transactionId,
 
-    status:
-      "Pending",
+        status:"Pending",
 
-    date:
-      new Date().toLocaleString()
+        createdAt:
+          firebase.firestore.FieldValue.serverTimestamp()
 
-  };
+      });
 
+    document.getElementById(
+      "successBox"
+    ).style.display = "block";
 
-  let orders =
-    JSON.parse(
-      localStorage.getItem(
-        "ffOrders"
-      ) || "[]"
+    document.getElementById(
+      "transactionId"
+    ).value = "";
+
+  }catch(errorObject){
+
+    alert(
+      "Order failed: " +
+      errorObject.message
     );
 
-  orders.push(order);
-
-  localStorage.setItem(
-    "ffOrders",
-    JSON.stringify(orders)
-  );
-
-
-  document.getElementById(
-    "successBox"
-  ).style.display = "block";
-
-  document.getElementById(
-    "transactionId"
-  ).value = "";
+  }
 
 }
 
@@ -1062,106 +1350,186 @@ function closeOrder(){
 
 
 /* =========================
-   ADMIN LOGIN
-========================= */
-
-function openAdminLogin(){
-
-  document
-    .getElementById("loginSection")
-    .classList.add("hidden");
-
-  document
-    .getElementById("adminLoginSection")
-    .classList.remove("hidden");
-
-}
-
-
-function closeAdminLogin(){
-
-  document
-    .getElementById("adminLoginSection")
-    .classList.add("hidden");
-
-  document
-    .getElementById("loginSection")
-    .classList.remove("hidden");
-
-}
-
- async function adminLogin(){
-
-  const email =
-    document.getElementById(
-      "adminEmail"
-    ).value.trim();
-
-  const password =
-    document.getElementById(
-      "adminPassword"
-    ).value;
-
-  const error =
-    document.getElementById(
-      "adminError"
-    );
-
-  error.innerText = "";
-
-  if(!email || !password){
-
-    error.innerText =
-      "Please enter admin Gmail and password.";
-
-    return;
-  }
-
-  if(
-    email.toLowerCase() !==
-    ADMIN_EMAIL.toLowerCase()
-  ){
-
-    error.innerText =
-      "This Gmail is not the admin account.";
-
-    return;
-  }
-
-  try{
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    document
-      .getElementById("adminLoginSection")
-      .classList.add("hidden");
-
-    document
-      .getElementById("adminSection")
-      .style.display = "block";
-
-    await renderAdmin();
-
-  }catch(errorObject){
-
-    error.innerText =
-      errorObject.message;
-
-  }
-
-}=====================
    ADMIN DASHBOARD
 ========================= */
 
-function renderAdmin(){
+async function renderAdmin(){
 
-  renderStats();
-  renderOrders();
   renderPriceManagement();
+
+  await renderOrders();
+
+}
+
+
+/* =========================
+   RENDER ORDERS
+========================= */
+
+async function renderOrders(){
+
+  const container =
+    document.getElementById(
+      "ordersList"
+    );
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("orders")
+        .orderBy(
+          "createdAt",
+          "desc"
+        )
+        .get();
+
+    const orders =
+      snapshot.docs.map(
+        function(doc){
+
+          return {
+            id:doc.id,
+            ...doc.data()
+          };
+
+        }
+      );
+
+    updateStats(orders);
+
+    if(!orders.length){
+
+      container.innerHTML =
+        "<p>No orders yet.</p>";
+
+      return;
+    }
+
+    container.innerHTML = "";
+
+    orders.forEach(
+      function(order){
+
+        const status =
+          order.status || "Pending";
+
+        const statusClass =
+          status.toLowerCase();
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "order-card";
+
+        const date =
+          order.createdAt
+          ?
+          order.createdAt
+            .toDate()
+            .toLocaleString()
+          :
+          "Processing...";
+
+        card.innerHTML = `
+
+          <p>
+            <strong>Order ID:</strong>
+            ${escapeHTML(order.id)}
+          </p>
+
+          <p>
+            <strong>Gmail:</strong>
+            ${escapeHTML(order.email || "")}
+          </p>
+
+          <p>
+            <strong>Product:</strong>
+            ${escapeHTML(order.product || "")}
+          </p>
+
+          <p>
+            <strong>Package:</strong>
+            ${escapeHTML(order.package || "")}
+          </p>
+
+          <p>
+            <strong>Amount:</strong>
+            ৳${Number(order.price || 0)}
+          </p>
+
+          <p>
+            <strong>Payment:</strong>
+            ${escapeHTML(order.payment || "")}
+          </p>
+
+          <p>
+            <strong>Transaction ID:</strong>
+            <b>
+              ${escapeHTML(order.transactionId || "")}
+            </b>
+          </p>
+
+          <p>
+            <strong>Date:</strong>
+            ${escapeHTML(date)}
+          </p>
+
+          <span class="status ${statusClass}">
+            ${escapeHTML(status)}
+          </span>
+
+          <br>
+
+          ${
+            status === "Pending"
+            ?
+            `
+            <button
+              class="small-btn approve"
+              onclick="updateOrder('${order.id}','Approved')"
+            >
+              Approve
+            </button>
+
+            <button
+              class="small-btn reject"
+              onclick="updateOrder('${order.id}','Rejected')"
+            >
+              Reject
+            </button>
+            `
+            :
+            ""
+          }
+
+          <button
+            class="small-btn delete"
+            onclick="deleteOrder('${order.id}')"
+          >
+            Delete
+          </button>
+
+        `;
+
+        container.appendChild(card);
+
+      }
+    );
+
+  }catch(errorObject){
+
+    container.innerHTML =
+      `
+      <p class="error">
+        Could not load orders.
+      </p>
+      `;
+
+    console.error(errorObject);
+
+  }
 
 }
 
@@ -1170,14 +1538,7 @@ function renderAdmin(){
    STATS
 ========================= */
 
-function renderStats(){
-
-  const orders =
-    JSON.parse(
-      localStorage.getItem(
-        "ffOrders"
-      ) || "[]"
-    );
+function updateStats(orders){
 
   const pending =
     orders.filter(
@@ -1194,151 +1555,25 @@ function renderStats(){
       o => o.status === "Rejected"
     ).length;
 
-
   document.getElementById(
     "totalOrders"
-  ).innerText = orders.length;
+  ).innerText =
+    orders.length;
 
   document.getElementById(
     "pendingOrders"
-  ).innerText = pending;
+  ).innerText =
+    pending;
 
   document.getElementById(
     "approvedOrders"
-  ).innerText = approved;
+  ).innerText =
+    approved;
 
   document.getElementById(
     "rejectedOrders"
-  ).innerText = rejected;
-
-}
-
-
-/* =========================
-   RENDER ORDERS
-========================= */
-
-function renderOrders(){
-
-  const container =
-    document.getElementById(
-      "ordersList"
-    );
-
-  const orders =
-    JSON.parse(
-      localStorage.getItem(
-        "ffOrders"
-      ) || "[]"
-    );
-
-  if(!orders.length){
-
-    container.innerHTML =
-      "<p>No orders yet.</p>";
-
-    return;
-  }
-
-
-  container.innerHTML = "";
-
-
-  orders
-    .slice()
-    .reverse()
-    .forEach(
-      function(order){
-
-        const statusClass =
-          order.status.toLowerCase();
-
-
-        container.innerHTML += `
-
-          <div class="order-card">
-
-            <p>
-              <strong>Order ID:</strong>
-              ${order.id}
-            </p>
-
-            <p>
-              <strong>Gmail:</strong>
-              ${escapeHTML(order.email)}
-            </p>
-
-            <p>
-              <strong>Product:</strong>
-              ${escapeHTML(order.product)}
-            </p>
-
-            <p>
-              <strong>Package:</strong>
-              ${escapeHTML(order.package)}
-            </p>
-
-            <p>
-              <strong>Amount:</strong>
-              ৳${Number(order.price)}
-            </p>
-
-            <p>
-              <strong>Payment:</strong>
-              ${escapeHTML(order.payment)}
-            </p>
-
-            <p>
-              <strong>Transaction ID:</strong>
-              <b>${escapeHTML(order.transactionId)}</b>
-            </p>
-
-            <p>
-              <strong>Date:</strong>
-              ${escapeHTML(order.date)}
-            </p>
-
-            <span class="status ${statusClass}">
-              ${order.status}
-            </span>
-
-            <br>
-
-            ${
-              order.status === "Pending"
-              ?
-              `
-              <button
-                class="small-btn approve"
-                onclick="updateOrder(${order.id},'Approved')"
-              >
-                Approve
-              </button>
-
-              <button
-                class="small-btn reject"
-                onclick="updateOrder(${order.id},'Rejected')"
-              >
-                Reject
-              </button>
-              `
-              :
-              ""
-            }
-
-            <button
-              class="small-btn delete"
-              onclick="deleteOrder(${order.id})"
-            >
-              Delete
-            </button>
-
-          </div>
-
-        `;
-
-      }
-    );
+  ).innerText =
+    rejected;
 
 }
 
@@ -1347,39 +1582,27 @@ function renderOrders(){
    UPDATE ORDER
 ========================= */
 
-function updateOrder(id,status){
+async function updateOrder(id,status){
 
-  let orders =
-    JSON.parse(
-      localStorage.getItem(
-        "ffOrders"
-      ) || "[]"
+  try{
+
+    await db
+      .collection("orders")
+      .doc(id)
+      .update({
+        status:status
+      });
+
+    await renderOrders();
+
+  }catch(errorObject){
+
+    alert(
+      "Update failed: " +
+      errorObject.message
     );
 
-
-  orders =
-    orders.map(
-      function(order){
-
-        if(order.id === id){
-
-          order.status = status;
-
-        }
-
-        return order;
-
-      }
-    );
-
-
-  localStorage.setItem(
-    "ffOrders",
-    JSON.stringify(orders)
-  );
-
-
-  renderAdmin();
+  }
 
 }
 
@@ -1388,34 +1611,29 @@ function updateOrder(id,status){
    DELETE ORDER
 ========================= */
 
-function deleteOrder(id){
+async function deleteOrder(id){
 
   if(!confirm(
     "Delete this order?"
   )) return;
 
+  try{
 
-  let orders =
-    JSON.parse(
-      localStorage.getItem(
-        "ffOrders"
-      ) || "[]"
+    await db
+      .collection("orders")
+      .doc(id)
+      .delete();
+
+    await renderOrders();
+
+  }catch(errorObject){
+
+    alert(
+      "Delete failed: " +
+      errorObject.message
     );
 
-
-  orders =
-    orders.filter(
-      order => order.id !== id
-    );
-
-
-  localStorage.setItem(
-    "ffOrders",
-    JSON.stringify(orders)
-  );
-
-
-  renderAdmin();
+  }
 
 }
 
@@ -1433,95 +1651,126 @@ function renderPriceManagement(){
 
   container.innerHTML = "";
 
-
   Object.keys(products)
     .forEach(
       function(productName){
 
-        let html = `
+        const wrapper =
+          document.createElement("div");
 
-          <div style="
-            background:#1e293b;
-            padding:15px;
-            border-radius:10px;
-            margin-bottom:20px;
-          ">
+        wrapper.style.cssText =
+          "background:#1e293b;padding:15px;border-radius:10px;margin-bottom:20px;";
 
-            <h4 style="
-              color:#38bdf8;
-              margin-bottom:12px;
-            ">
-              ${escapeHTML(productName)}
-            </h4>
+        const title =
+          document.createElement("h4");
 
-            <div id="packages-${slug(productName)}">
-        `;
+        title.style.cssText =
+          "color:#38bdf8;margin-bottom:12px;";
 
+        title.innerText =
+          productName;
+
+        wrapper.appendChild(title);
+
+        const list =
+          document.createElement("div");
 
         products[productName]
           .forEach(
             function(item,index){
 
-              html += `
+              const row =
+                document.createElement("div");
 
-                <div class="package-row">
+              row.className =
+                "package-row";
 
-                  <input
-                    type="text"
-                    id="name-${slug(productName)}-${index}"
-                    value="${escapeAttribute(item[0])}"
-                  >
+              row.innerHTML = `
 
-                  <input
-                    type="number"
-                    id="price-${slug(productName)}-${index}"
-                    value="${Number(item[1])}"
-                    min="0"
-                  >
+                <input
+                  type="text"
+                  value="${escapeAttribute(item[0])}"
+                  data-name
+                >
 
-                  <button
-                    class="small-btn delete"
-                    onclick="deletePackage('${escapeAttribute(productName)}',${index})"
-                  >
-                    Delete
-                  </button>
+                <input
+                  type="number"
+                  value="${Number(item[1])}"
+                  min="0"
+                  data-price
+                >
 
-                </div>
+                <button
+                  class="small-btn delete"
+                  type="button"
+                >
+                  Delete
+                </button>
 
               `;
+
+              row
+                .querySelector("button")
+                .onclick =
+                function(){
+
+                  deletePackage(
+                    productName,
+                    index
+                  );
+
+                };
+
+              list.appendChild(row);
 
             }
           );
 
+        wrapper.appendChild(list);
 
-        html += `
+        const addButton =
+          document.createElement("button");
 
-            </div>
+        addButton.className =
+          "add-btn";
 
-            <button
-              class="add-btn"
-              onclick="addPackage('${escapeAttribute(productName)}')"
-            >
-              + Add Package
-            </button>
+        addButton.innerText =
+          "+ Add Package";
 
-            <button
-              style="margin-top:10px;background:#16a34a"
-              onclick="saveProductPrices('${escapeAttribute(productName)}')"
-            >
-              Save Prices
-            </button>
+        addButton.onclick =
+          function(){
 
-          </div>
+            addPackage(productName);
 
-        `;
+          };
 
+        wrapper.appendChild(addButton);
 
-        container.innerHTML += html;
+        const saveButton =
+          document.createElement("button");
+
+        saveButton.style.cssText =
+          "margin-top:10px;background:#16a34a";
+
+        saveButton.innerText =
+          "Save Prices";
+
+        saveButton.onclick =
+          function(){
+
+            saveProductPrices(
+              productName,
+              list
+            );
+
+          };
+
+        wrapper.appendChild(saveButton);
+
+        container.appendChild(wrapper);
 
       }
     );
-
 
 }
 
@@ -1530,29 +1779,33 @@ function renderPriceManagement(){
    SAVE PRICES
 ========================= */
 
-function saveProductPrices(productName){
-
-  const list =
-    products[productName];
+function saveProductPrices(
+  productName,
+  listElement
+){
 
   const newList = [];
 
+  const rows =
+    listElement.querySelectorAll(
+      ".package-row"
+    );
 
-  list.forEach(
-    function(item,index){
+  rows.forEach(
+    function(row){
 
       const name =
-        document.getElementById(
-          `name-${slug(productName)}-${index}`
-        ).value.trim();
+        row
+          .querySelector("[data-name]")
+          .value
+          .trim();
 
       const price =
         Number(
-          document.getElementById(
-            `price-${slug(productName)}-${index}`
-          ).value
+          row
+            .querySelector("[data-price]")
+            .value
         );
-
 
       if(name && price >= 0){
 
@@ -1566,20 +1819,16 @@ function saveProductPrices(productName){
     }
   );
 
-
   products[productName] =
     newList;
-
 
   localStorage.setItem(
     "ffProducts",
     JSON.stringify(products)
   );
 
-
   renderProducts();
   renderPriceManagement();
-
 
   alert(
     "Prices saved successfully."
@@ -1595,20 +1844,14 @@ function saveProductPrices(productName){
 function addPackage(productName){
 
   const name =
-    prompt(
-      "Package name:"
-    );
+    prompt("Package name:");
 
   if(!name) return;
 
-
   const price =
     Number(
-      prompt(
-        "Package price:"
-      )
+      prompt("Package price:")
     );
-
 
   if(
     !Number.isFinite(price) ||
@@ -1622,18 +1865,15 @@ function addPackage(productName){
     return;
   }
 
-
   products[productName].push([
     name,
     price
   ]);
 
-
   localStorage.setItem(
     "ffProducts",
     JSON.stringify(products)
   );
-
 
   renderProducts();
   renderPriceManagement();
@@ -1645,22 +1885,22 @@ function addPackage(productName){
    DELETE PACKAGE
 ========================= */
 
-function deletePackage(productName,index){
+function deletePackage(
+  productName,
+  index
+){
 
   if(!confirm(
     "Delete this package?"
   )) return;
 
-
   products[productName]
     .splice(index,1);
-
 
   localStorage.setItem(
     "ffProducts",
     JSON.stringify(products)
   );
-
 
   renderProducts();
   renderPriceManagement();
@@ -1671,15 +1911,6 @@ function deletePackage(productName,index){
 /* =========================
    HELPERS
 ========================= */
-
-function slug(text){
-
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g,"-");
-
-}
-
 
 function escapeHTML(text){
 
@@ -1696,45 +1927,56 @@ function escapeHTML(text){
 function escapeAttribute(text){
 
   return String(text)
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+
 }
 
 
-/* =========================
-   AUTO START
-========================= */
-
-window.onload = function(){
+function firebaseError(error){
 
   if(
-    localStorage.getItem("ffAdmin")
-    === "true"
+    error.code ===
+    "auth/email-already-in-use"
   ){
 
-    document
-      .getElementById("loginSection")
-      .classList.add("hidden");
-
-    document
-      .getElementById("adminSection")
-      .style.display = "block";
-
-    renderAdmin();
-
-    return;
-  }
-
-
-  if(
-    localStorage.getItem("ffUser")
-  ){
-
-    showStore();
+    return "This Gmail already has an account.";
 
   }
 
-};
+  if(
+    error.code ===
+    "auth/invalid-credential"
+  ){
+
+    return "Wrong Gmail or password.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/weak-password"
+  ){
+
+    return "Password must be at least 6 characters.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/invalid-email"
+  ){
+
+    return "Invalid Gmail address.";
+
+  }
+
+  return error.message ||
+    "Something went wrong.";
+
+}
 
 </script>
 
