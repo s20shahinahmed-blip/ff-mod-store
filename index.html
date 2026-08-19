@@ -489,6 +489,12 @@ footer{
   <div id="adminError" class="error"></div>
 
   <input
+    type="email"
+    id="adminEmail"
+    placeholder="Admin Gmail address"
+  >
+
+  <input
     type="password"
     id="adminPassword"
     placeholder="Admin Password"
@@ -505,10 +511,7 @@ footer{
     Back
   </button>
 
-</section>
-
-
-<!-- ADMIN PANEL -->
+</section>- A ADMIN PANEL -->
 <section id="adminSection" class="admin-box">
 
   <h2>Admin Dashboard</h2>
@@ -1087,8 +1090,12 @@ function closeAdminLogin(){
 
 }
 
+ async function adminLogin(){
 
-function adminLogin(){
+  const email =
+    document.getElementById(
+      "adminEmail"
+    ).value.trim();
 
   const password =
     document.getElementById(
@@ -1100,44 +1107,53 @@ function adminLogin(){
       "adminError"
     );
 
-  if(password !== ADMIN_PASSWORD){
+  error.innerText = "";
+
+  if(!email || !password){
 
     error.innerText =
-      "Wrong admin password.";
+      "Please enter admin Gmail and password.";
 
     return;
   }
 
-  localStorage.setItem(
-    "ffAdmin",
-    "true"
-  );
+  if(
+    email.toLowerCase() !==
+    ADMIN_EMAIL.toLowerCase()
+  ){
 
-  document
-    .getElementById("adminLoginSection")
-    .classList.add("hidden");
+    error.innerText =
+      "This Gmail is not the admin account.";
 
-  document
-    .getElementById("adminSection")
-    .style.display = "block";
+    return;
+  }
 
-  renderAdmin();
+  try{
 
-}
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
+    document
+      .getElementById("adminLoginSection")
+      .classList.add("hidden");
 
-function adminLogout(){
+    document
+      .getElementById("adminSection")
+      .style.display = "block";
 
-  localStorage.removeItem(
-    "ffAdmin"
-  );
+    await renderAdmin();
 
-  location.reload();
+  }catch(errorObject){
 
-}
+    error.innerText =
+      errorObject.message;
 
+  }
 
-/* =========================
+}=====================
    ADMIN DASHBOARD
 ========================= */
 
